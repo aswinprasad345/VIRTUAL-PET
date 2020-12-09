@@ -1,7 +1,8 @@
 var dog,happyDog,database,foodS,foodstock;
 
 function preload(){
-  dogImage = loadImage("dogImg.png");
+  dogImage = loadImage("images/dogImg.png");
+  dogHappy = loadImage("images/dogImg1.png");
 }
 
 function setup() {
@@ -9,7 +10,7 @@ function setup() {
   
   database = firebase.database();
 
-  dog = createSprite(250,400,50,50);
+  dog = createSprite(250,250,1,1);
   dog.addImage(dogImage);
 
   foodstock = database.ref('food');
@@ -19,10 +20,32 @@ function setup() {
 
 function draw() {
   background(46,139,87);
+
+  text("Press UP_ARROW to feed drago milk",150,50);
+  textSize(35);
+  fill(white);
+  strokeWeight(3);
   
   if(keyWentDown(UP_ARROW)){
-    
+    writeStock(foodS);
   }
 
   drawSprites();
+}
+
+function readStock(){
+  foodS = data.val();
+}
+
+function writeStock(x){
+
+  if(x<=0){
+    x = 0
+  }else{
+    x = x - 1;
+  }
+
+  database.ref("/").update({
+    food:x
+  })
 }
