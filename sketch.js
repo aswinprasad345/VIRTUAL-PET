@@ -23,17 +23,18 @@ function draw() {
 
   text("Press UP_ARROW to feed drago milk",150,50);
   textSize(35);
-  fill(white);
+  fill("white");
   strokeWeight(3);
   
   if(keyWentDown(UP_ARROW)){
     writeStock(foodS);
+    dog.addImage(dogHappy);
   }
 
   drawSprites();
 }
 
-function readStock(){
+function readStock(data){
   foodS = data.val();
 }
 
