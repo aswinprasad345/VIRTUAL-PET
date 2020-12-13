@@ -11,6 +11,7 @@ function setup() {
   database = firebase.database();
 
   dog = createSprite(250,250,1,1);
+  dog.scale = 0.5;
   dog.addImage(dogImage);
 
   foodstock = database.ref('food');
@@ -21,10 +22,11 @@ function setup() {
 function draw() {
   background(46,139,87);
 
-  text("Press UP_ARROW to feed drago milk",150,50);
-  textSize(35);
-  fill("white");
+  textSize(10);
+  fill('white');
   strokeWeight(3);
+  text("Press UP_ARROW to feed drago milk",150,50);
+
   
   if(keyWentDown(UP_ARROW)){
     writeStock(foodS);
