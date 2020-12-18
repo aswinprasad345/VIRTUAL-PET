@@ -25,7 +25,7 @@ function draw() {
   textSize(10);
   fill('white');
   strokeWeight(3);
-  text("Press UP_ARROW to feed drago milk",150,50);
+  text("Press UP_ARROW to feed drago milk",foodS,50,650);
 
   
   if(keyWentDown(UP_ARROW)){
