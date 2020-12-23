@@ -25,8 +25,12 @@ function draw() {
   textSize(10);
   fill('white');
   strokeWeight(3);
-  text("Press UP_ARROW to feed drago milk",foodS,50,650);
+  text("Press UP_ARROW to feed drago milk",175,30);
 
+  textSize(10);
+  fill('white');
+  strokeWeight(3);
+  text("food remaining : " + foodS,200,50);
   
   if(keyWentDown(UP_ARROW)){
     writeStock(foodS);
