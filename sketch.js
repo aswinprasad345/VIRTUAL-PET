@@ -1,4 +1,4 @@
-var dog,happyDog,database,foodS,foodstock;
+var dog,happyDog,database,foodS,foodstock,fedTime,lastFed,addFood,feedDog,foodObj;
 
 function preload(){
   dogImage = loadImage("images/dogImg.png");
@@ -16,6 +16,8 @@ function setup() {
 
   foodstock = database.ref('food');
   foodstock.on("value",readStock)
+
+  addFood = new Food();
 
 }
 
@@ -36,6 +38,8 @@ function draw() {
     writeStock(foodS);
     dog.addImage(dogHappy);
   }
+
+  addFood.display();
 
   drawSprites();
 }
