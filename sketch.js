@@ -1,4 +1,4 @@
-var dog,happyDog,database,foodS,foodstock,fedTime,lastFed,addFood,feedDog,foodObj;
+var dog,happyDog,database,foodS,foodstock,fedTime,lastFed,foodObj,feedDog,foodObj,canvas;
 
 function preload(){
   dogImage = loadImage("images/dogImg.png");
@@ -6,7 +6,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(500,500);
+  canvas = createCanvas(displayWidth - 20, displayHeight-30);
   
   database = firebase.database();
 
@@ -17,8 +17,9 @@ function setup() {
   foodstock = database.ref('food');
   foodstock.on("value",readStock)
 
-  addFood = new Food();
-
+  foodObj = new Food(0,0,1,1);
+  
+  
 }
 
 function draw() {
@@ -39,7 +40,7 @@ function draw() {
     dog.addImage(dogHappy);
   }
 
-  addFood.display();
+  foodObj.display();
 
   drawSprites();
 }
