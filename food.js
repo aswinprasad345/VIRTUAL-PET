@@ -22,9 +22,8 @@ class Food {
         var x = 80,y = 100
         push();
         imageMode(CENTER);
-        image(this.image,720,220,70,70);
         if(this.foodS!=0){
-            for(var i = 0;this.foodS;i++){
+            for(var i = 0; i < foodS ;i++){
                 if(i%10==0){
                     x = 80
                     y = y + 50
