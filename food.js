@@ -9,12 +9,6 @@ class Food {
         this.foodstock = database.ref('food');
         foodstock.on("value",readStock);
     }
-    updateFoodStock(){
-
-    }
-    deductFood(){
-
-    }
     readStock(data){
         this.foodS = data.val();
     }

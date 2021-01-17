@@ -10,6 +10,11 @@ function setup() {
   
   database = firebase.database();
 
+  fedTime = database.ref('feedTime');
+  fedTime.on("value",function(data){
+    lastFed = data.val();
+  });
+
   dog = createSprite(550,250,1,1);
   dog.scale = 0.5;
   dog.addImage(dogImage);
@@ -36,6 +41,18 @@ function draw() {
   fill('white');
   strokeWeight(3);
   text("food remaining : " + foodS,125,100);
+
+  fill(255,255,254);
+  textSize(15);
+  if(lastFed=>12){
+    text("Last Feed : " + lastFed%12 + " PM ",600,25);
+  }
+  else if(lastFed==0){
+    text("Last Feed : 12 AM",600,25);
+  }
+  else{
+    text("Last Feed : " + lastFed + " AM",600,25);
+  }
 
   foodObj.display();
 
@@ -67,12 +84,11 @@ function addFoods(){
 }
 
 function feedFoods(){
-  dog.addImage(happyDog);
-
-  foodObj.updateFoodStock(foodObj.getFoodStock()-1);
+  dog.addImage(dogHappy);
+  writeStock(foodS);
+  console.log("food")
   database.ref("/").update({
-    food:foodObj.getFoodStock(),
     feedTime:hour()
   })
-}
+  }
 
