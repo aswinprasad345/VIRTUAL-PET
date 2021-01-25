@@ -1,8 +1,11 @@
-var dog,happyDog,database,foodS,foodstock,fedTime,lastFed,foodObj,feedDog,foodObj,canvas,addFood;
+var dog,happyDog,washRoom,garden,livingRoom,database,foodS,foodstock,fedTime,lastFed,foodObj,feedDog,foodObj,canvas,addFood,readState,gameState;
 
 function preload(){
   dogImage = loadImage("images/dogImg.png");
   dogHappy = loadImage("images/dogImg1.png");
+  washRoom = loadImage("images/Wash Room.png");
+  garden = loadImage("images/Garden.png");
+  livingRoom = loadImage ("images/Living Room.png");
 }
 
 function setup() {
@@ -14,6 +17,11 @@ function setup() {
   fedTime.on("value",function(data){
     lastFed = data.val();
   });
+
+  readState = database.ref("gameState");
+  readState.on("value",function(data){
+    gameState = data.val();
+  })
 
   dog = createSprite(550,250,1,1);
   dog.scale = 0.5;
