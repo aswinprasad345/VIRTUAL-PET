@@ -1,8 +1,9 @@
-var dog,happyDog,washRoom,garden,livingRoom,database,foodS,foodstock,fedTime,lastFed,foodObj,feedDog,foodObj,canvas,addFood,readState,gameState;
+var dog,happyDog,sadDog,washRoom,garden,livingRoom,database,foodS,foodstock,fedTime,lastFed,foodObj,feedDog,foodObj,canvas,addFood,readState,gameState;
 
 function preload(){
   dogImage = loadImage("images/dogImg.png");
   dogHappy = loadImage("images/dogImg1.png");
+  dogSad = loadImage("images/Lazy.png")
   washRoom = loadImage("images/Wash Room.png");
   garden = loadImage("images/Garden.png");
   livingRoom = loadImage ("images/Living Room.png");
@@ -62,6 +63,17 @@ function draw() {
     text("Last Feed : " + lastFed + " AM",600,25);
   }
 
+  if(gameState!== "Hungry"){
+    feedDog.hide();
+    addFood.hide();
+    dog.remove();
+  }
+  else{
+    feedDog.show();
+    addFood.show();
+    dog.addImage(dogSad);
+  }
+
   foodObj.display();
 
   drawSprites();
@@ -99,4 +111,16 @@ function feedFoods(){
     feedTime:hour()
   })
   }
+
+function livingroom(){
+  background(livingRoom,550,500);
+}  
+
+function washroom(){
+  background(washRoom,550,500);
+}
+
+function gardens(){
+  background(garden,550,500)
+}
 
