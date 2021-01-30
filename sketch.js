@@ -62,16 +62,34 @@ function draw() {
   else{
     text("Last Feed : " + lastFed + " AM",600,25);
   }
-
-  if(gameState!== "Hungry"){
-    feedDog.hide();
-    addFood.hide();
-    dog.remove();
+  if(gameState !== undefined){
+    if(gameState!== "Hungry"){
+      feedDog.hide();
+      addFood.hide();
+      dog.remove();
+    }
+    else{
+      feedDog.show();
+      addFood.show();
+      console.log("error");
+      dog.addImage(dogSad);
+    }
   }
-  else{
-    feedDog.show();
-    addFood.show();
-    dog.addImage(dogSad);
+
+  currentTime = hour();
+
+  if(currentTime==(lastFed+1)){
+    update("Playing");
+    foodObj.gardens();
+  }else if(currentTime==(lastFed+2)){
+    update("Sleeping");
+    foodObj.livingroom();
+  }else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
+    update("Bathing");
+    foodObj.washroom();
+  }else{
+    update("Bathing");
+    foodObj.display();
   }
 
   foodObj.display();
@@ -105,10 +123,12 @@ function addFoods(){
 
 function feedFoods(){
   dog.addImage(dogHappy);
+
   writeStock(foodS);
   console.log("food")
   database.ref("/").update({
-    feedTime:hour()
+    feedTime:hour(),
+    gameState:"happy"
   })
   }
 
@@ -122,5 +142,11 @@ function washroom(){
 
 function gardens(){
   background(garden,550,500)
+}
+
+function update(state){
+  database.ref("/").update({
+    gameState : state
+  })
 }
 
