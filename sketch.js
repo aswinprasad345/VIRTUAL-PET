@@ -62,11 +62,11 @@ function draw() {
   else{
     text("Last Feed : " + lastFed + " AM",600,25);
   }
+  console.log(gameState);
   if(gameState !== undefined){
     if(gameState!== "Hungry"){
       feedDog.hide();
       addFood.hide();
-      dog.remove();
     }
     else{
       feedDog.show();
@@ -80,15 +80,27 @@ function draw() {
 
   if(currentTime==(lastFed+1)){
     update("Playing");
-    foodObj.gardens();
+    gardens();
+    dog.hide();
+    foodObj.hide();
+    
+   
   }else if(currentTime==(lastFed+2)){
     update("Sleeping");
-    foodObj.livingroom();
+    livingroom();
+    dog.hide();
+    foodObj.hide();
+    feedDog.hide();
+    addFood.hide();
   }else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
     update("Bathing");
-    foodObj.washroom();
+    washroom();
+    dog.hide();
+    foodObj.hide();
+    feedDog.hide();
+    addFood.hide();
   }else{
-    update("Bathing");
+    dog.display();
     foodObj.display();
   }
 
