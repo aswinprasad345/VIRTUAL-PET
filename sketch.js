@@ -81,21 +81,18 @@ function draw() {
   if(currentTime==(lastFed+1)){
     update("Playing");
     gardens();
-    dog.hide();
     foodObj.hide();
     
    
   }else if(currentTime==(lastFed+2)){
     update("Sleeping");
     livingroom();
-    dog.hide();
     foodObj.hide();
     feedDog.hide();
     addFood.hide();
   }else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
     update("Bathing");
     washroom();
-    dog.hide();
     foodObj.hide();
     feedDog.hide();
     addFood.hide();
